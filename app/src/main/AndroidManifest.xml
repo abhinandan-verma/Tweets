@@ -17,7 +17,8 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
+            android:banner="@color/teal_200"
+            android:colorMode="hdr"
             android:theme="@style/Theme.Tweets">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

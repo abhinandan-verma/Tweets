@@ -2,6 +2,7 @@ package com.abhicoding.tweets.screens
 
 import android.util.Log
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -12,10 +13,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.abhicoding.tweets.viewmodel.DetailViewModel
 
 @Composable
@@ -24,7 +25,7 @@ fun DetailScreen() {
     val tweets = detailViewModel.tweets.collectAsState()
 
     LazyColumn(content = {
-        items(tweets.value){
+        items(tweets.value) {
             TweetListItem(tweet = it.text)
             Log.d("TAG", it.text)
         }
@@ -39,9 +40,16 @@ fun TweetListItem(tweet: String) {
             .padding(16.dp),
         border = BorderStroke(1.dp, Color.Black),
         content = {
-            Text(text = tweet,
-                modifier = Modifier.padding(16.dp),
-                style = MaterialTheme.typography.bodyMedium)
+            Text(
+                text = tweet,
+                color = Color.Black,
+                modifier = Modifier.background(
+                    Brush.linearGradient(
+                        listOf(Color.Cyan, Color.Yellow)
+                    )
+                ).padding(16.dp),
+                style = MaterialTheme.typography.bodyMedium
+            )
         }
     )
 }
